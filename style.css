@@ -1,0 +1,109 @@
+:root {
+  --primary: #19336e;
+  --primary-light: #1e2a6f;
+  --accent: #ff9800;
+  --success: #4CAF50;
+  --disabled-bg: #555;
+  --disabled-text: #aaa;
+  --text: #fff;
+  --radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 80px 16px 60px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: var(--text);
+  text-align: center;
+}
+
+.site-logo {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 60px;
+  height: auto;
+  z-index: 9999;
+}
+
+#counter {
+  font-size: 3rem;
+  margin-bottom: 50px;
+}
+
+#clickButton {
+  font-size: 2rem;
+  background-color: var(--accent);
+  color: white;
+  padding: 20px 40px;
+  border: none;
+  border-radius: 50px;
+  margin-bottom: 50px;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+#clickButton:active {
+  transform: scale(0.95);
+}
+
+#upgrades {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 250px;
+}
+
+#upgrades button {
+  font-size: 1.25rem;
+  padding: 15px 25px;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  margin: 0;
+  transition: opacity 0.2s ease;
+}
+
+#upgrades button.enabled {
+  background-color: var(--success);
+  color: white;
+}
+
+#upgrades button.disabled {
+  background-color: var(--disabled-bg);
+  color: var(--disabled-text);
+  cursor: not-allowed;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  text-align: center;
+  font-size: 14px;
+  color: gray;
+  background: white;
+  padding: 4px 0;
+}
+
+@media (max-width: 500px) {
+  #clickButton {
+    width: 80%;
+  }
+
+  #upgrades {
+    width: 90%;
+  }
+}
