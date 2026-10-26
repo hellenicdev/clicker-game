@@ -7,21 +7,17 @@
   <meta name="keywords" content="HellenicDev, programming, HTML, CSS, JS, open-source, projects, web-development, clicker game, arcade, educational">
   <meta name="author" content="HellenicDev">
   <meta name="theme-color" content="#19336e">
-  <meta property="og:title" content="HellenicDev">
+  <meta property="og:title" content="Clicker Simulation Game">
   <meta property="og:description" content="A simple incremental game where every click counts. Watch your score rise!">
   <meta property="og:image" content="https://hellenicdev.eu/clicker-game/logo.webp">
-  <meta property="og:url" content="https://hellenicdev.eu">
+  <meta property="og:url" content="https://hellenicdev.eu/clicker-game/">
   <meta property="og:type" content="website">
+  <link rel="canonical" href="https://hellenicdev.eu/clicker-game/">
   <title>Clicker Simulation Game</title>
   <link rel="stylesheet" href="style.css">
 
-  <!-- Google Analytics -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-9FWQFZME3Z');
-  </script>
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="06e4a97f-2c34-41ed-8ab6-d53b581ff080" type="text/javascript" async></script>
+  <script src="https://hellenicdev.eu/js/consent-analytics.js" data-ga-id="G-9FWQFZME3Z" defer></script>
 </head>
 <body>
 
@@ -29,10 +25,12 @@
   <img src="https://hellenicdev.eu/logo.webp" alt="Logo" class="site-logo">
 </a>
 
-<div id="counter">Points: 0</div>
-<button id="clickButton">Click me!</button>
-
-<div id="upgrades"></div>
+<main>
+  <h1 class="visually-hidden">Clicker Simulation Game</h1>
+  <div id="counter" aria-live="polite">Points: 0</div>
+  <button id="clickButton">Click me!</button>
+  <div id="upgrades"></div>
+</main>
 
 <footer>
   &copy; 2025-2026 HellenicDev &mdash; All projects and content belong to HellenicDev.
