@@ -14,9 +14,43 @@ const UPGRADES = [
   { id: 'instantClick', name: 'Instant Click', cost: 400, effect: s => { startInstantClick(s); } },
 ];
 
+const STORAGE_KEY = 'clicker-game-progress';
+
 const counterEl = document.getElementById('counter');
 const clickBtn = document.getElementById('clickButton');
 const upgradesEl = document.getElementById('upgrades');
+
+function saveProgress() {
+  try {
+    const owned = UPGRADES.filter((def) => state.upgrades[def.id]).map((def) => def.id);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      points: state.points,
+      upgrades: owned,
+    }));
+  } catch (_) {
+    // Private mode or a full quota should not stop the game.
+  }
+}
+
+function loadProgress() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    if (!data || typeof data !== 'object') return;
+    if (typeof data.points === 'number' && Number.isFinite(data.points) && data.points >= 0) {
+      state.points = data.points;
+    }
+    const owned = new Set(Array.isArray(data.upgrades) ? data.upgrades : []);
+    for (const def of UPGRADES) {
+      if (!owned.has(def.id)) continue;
+      state.upgrades[def.id] = true;
+      def.effect(state);
+    }
+  } catch (_) {
+    // Ignore a corrupt save and start from a fresh score.
+  }
+}
 
 function render() {
   counterEl.textContent = `Points: ${state.points}`;
@@ -27,6 +61,7 @@ function render() {
     const affordable = !up && state.points >= def.cost;
     btn.className = affordable ? 'enabled' : 'disabled';
   }
+  saveProgress();
 }
 
 function purchase(def) {
@@ -51,6 +86,8 @@ for (const def of UPGRADES) {
   btn.addEventListener('click', () => purchase(def));
   upgradesEl.appendChild(btn);
 }
+
+loadProgress();
 
 function startAutoClicker(s) {
   if (s.autoClickInterval) return;
