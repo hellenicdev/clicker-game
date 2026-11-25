@@ -59,7 +59,10 @@ function render() {
     if (!btn) continue;
     const up = state.upgrades[def.id];
     const affordable = !up && state.points >= def.cost;
-    btn.className = affordable ? 'enabled' : 'disabled';
+    btn.className = up ? 'owned' : affordable ? 'enabled' : 'disabled';
+    btn.disabled = !affordable;
+    btn.setAttribute('aria-pressed', up ? 'true' : 'false');
+    btn.textContent = up ? `${def.name} \u2713` : `${def.name} (${def.cost})`;
   }
   saveProgress();
 }
@@ -81,7 +84,9 @@ clickBtn.addEventListener('click', () => {
 for (const def of UPGRADES) {
   const btn = document.createElement('button');
   btn.id = `${def.id}Button`;
+  btn.type = 'button';
   btn.className = 'disabled';
+  btn.disabled = true;
   btn.textContent = `${def.name} (${def.cost})`;
   btn.addEventListener('click', () => purchase(def));
   upgradesEl.appendChild(btn);
