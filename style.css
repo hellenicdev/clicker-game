@@ -1,10 +1,10 @@
 :root {
   --primary: #19336e;
   --primary-light: #1e2a6f;
-  --accent: #ff9800;
-  --success: #4CAF50;
+  --accent: #ef6c00;
+  --success: #2e7d32;
   --disabled-bg: #555;
-  --disabled-text: #aaa;
+  --disabled-text: #e0e0e0;
   --text: #fff;
   --radius: 8px;
 }
@@ -102,6 +102,31 @@ main {
   background-color: var(--disabled-bg);
   color: var(--disabled-text);
   cursor: not-allowed;
+}
+
+#upgrades button.owned {
+  background-color: var(--primary);
+  color: var(--text);
+  cursor: default;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+#clickButton:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 footer {
